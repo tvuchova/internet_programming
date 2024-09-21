@@ -1,0 +1,95 @@
+1.	Internet cable network
+
+•	https://bbmaps.itu.int/bbmaps/
+•	https://www.submarinecablemap.com/
+
+2.   IP address
+
+•	На този сайт може да видите  IP адреса си:
+       https://www.whatismyip.com/
+
+3.  Windows команда:
+     Ipconfig
+
+•	Ethernet adapter or wireless adapter name
+•	IP address
+•	Subnet mask
+•	Default gateway
+•	DHCP server
+•	DNS servers
+
+Ethernet adapter Ethernet
+IP address: 192.168.1.100
+Subnet mask: 255.255.255.0
+Default gateway: 192.168.1.1
+Wireless LAN adapter WiFi
+
+IP address: 192.168.2.100
+Subnet mask: 255.255.255.0
+Default gateway: 192.168.2.1
+
+
+
+4.DNS adress
+
+ https://www.nslookup.io/ -може да видите адреса на домейна
+
+
+ Ping – check if network is reachable
+
+
+
+5. Ping google.com
+Internet Control Message Protocol (ICMP) "echo request" packets to Google's server (resolved by its domain name google.com).
+
+
+
+PING google.com (142.250.187.174):
+56 data bytes 64 bytes from 142.250.187.174: icmp_seq=0 ttl=59 time=4.788 ms
+64 bytes from 142.250.187.174: icmp_seq=1 ttl=59 time=7.441 ms
+64 bytes from 142.250.187.174: icmp_seq=2 ttl=59 time=5.552 ms
+
+•	The domain google.com резолва се до IP address 142.250.187.174.
+•	Командата изпраща пакети от 56 bytes към server на IP адреса.
+  64 bytes from 142.250.187.174:
+•	Получен е отговор 142.250.187.174 (Google's server).
+•	Размера на получените данни е  64 bytes, което е размера на  ICMP packet включвайки 56-byte данни + хедър.
+  icmp_seq=0, icmp_seq=1, ...
+•	брояч на изпратените пакети
+•  ttl=59
+•	TTL (Time to Live) is a value that limits the lifespan or number of hops that the packet can take across routers before being discarded.
+It helps in preventing infinite loops in case of routing errors.
+•	A TTL value of 59 means the packet can take 59 hops (or passes through routers) before being dropped.
+•  time=4.788 ms, time=7.441 ms, ...
+•	This indicates the round-trip time it took for the packet to go from your machine to Google's server and back, measured in milliseconds (ms).
+64 bytes from 142.250.187.174: icmp_seq=1 ttl=59 time=7.441 ms
+This means:
+•	You received a 64-byte ICMP echo reply from 142.250.187.174 (Google's server).
+•	It was the second packet sent (sequence number 1).
+•	The packet had a TTL of 59 (meaning it could pass through up to 59 routers).
+•	The round-trip time was 7.441 milliseconds.
+
+
+6.Wireshark
+Wireshark е широко използван инструмент за улавяне и анализ на мрежовия трафик, който се използва широко както за образователни цели,
+ така и за отстраняване на компютърни или мрежови проблеми. Wireshark работи с почти всички протоколи на модела OSI, има интерфейс,
+ който е разбираем за обикновения потребител и удобна система за филтриране на данни. Освен всичко това, програмата е кросплатформена
+ и поддържа следните операционни системи: Windows, Linux, Mac OS X, Solaris, FreeBSD, NetBSD, OpenBSD.
+
+
+ 6.1 инсталиране: https://www.wireshark.org/#downloadLink
+ Wireshark for Windows
+ Wireshark comes in two options for Windows: 32-bit and 64-bit.
+ Wireshark is available on Mac as a Homebrew install: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+
+Wireshark is a packet sniffer and analysis tool. It captures network traffic from ethernet, Bluetooth, wireless (IEEE.802.11), token ring, and frame relay connections, among others, and stores that data for offline analysis.
+Editor’s Note: A “packet” is a single message from any network protocol (e.g., TCP, DNS, etc.).
+Editor’s Note 2: LAN traffic is in broadcast mode, meaning a single computer with Wireshark can see traffic between two other computers. To see traffic to an external site, you need to capture the packets on the local computer.
+
+
+Wireshark allows you to filter the log before the capture starts or during analysis, so you can narrow down and zero in on
+what you’re looking for in the network trace. For example, you can set a filter to see TCP traffic between two IP addresses, or you can set it only to show you the packets sent from one computer.
+The filters in Wireshark are one of the primary reasons it has become the standard tool for packet analysis.
+
+
