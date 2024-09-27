@@ -1,4 +1,4 @@
-package sockets_part3.finalized.simple_client_server;
+package lesson_1.sockets_part3.finalized.simple_client_server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
