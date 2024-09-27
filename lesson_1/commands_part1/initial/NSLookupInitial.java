@@ -1,4 +1,4 @@
-package commands_part1.initial;
+package lesson_1.commands_part1.initial;
 
 
 public class NSLookupInitial {
