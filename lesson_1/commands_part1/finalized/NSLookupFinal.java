@@ -1,4 +1,4 @@
-package commands_part1.finalized;
+package lesson_1.commands_part1.finalized;
 
 import java.io.IOException;
 import java.net.InetAddress;
