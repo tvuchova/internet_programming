@@ -1,4 +1,4 @@
-package sockets;
+package sockets_part3.initial.simple_client_server;
 
 public class Client {
     public static void main(String[] args) {
