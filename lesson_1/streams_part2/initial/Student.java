@@ -1,4 +1,4 @@
-package streams_part2.initial;
+package lesson_1.streams_part2.initial;
 
 public class Student {
         private String name;
