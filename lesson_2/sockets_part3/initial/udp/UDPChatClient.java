@@ -1,4 +1,4 @@
-package lesson_1.sockets_part3.initial.udp;
+package lesson_2.sockets_part3.initial.udp;
 
 
 public class UDPChatClient {

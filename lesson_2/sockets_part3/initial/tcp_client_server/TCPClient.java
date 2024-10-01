@@ -1,4 +1,4 @@
-package lesson_1.sockets_part3.initial.tcp_client_server;
+package lesson_2.sockets_part3.initial.tcp_client_server;
 
 import java.net.Socket;
 
