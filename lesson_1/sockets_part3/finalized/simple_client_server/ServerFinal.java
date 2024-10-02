@@ -10,24 +10,37 @@ import java.net.Socket;
 public class ServerFinal {
     public static void main(String[] args) {
         System.out.println("Hello World.I am Server!");
+        try (ServerSocket serverSocket = new ServerSocket(9708)) {
+            System.out.println("Server is listening on port 9708...");
+            boolean exit = false;
+            while (!exit) {
 
-        try {
-            ServerSocket ss = new ServerSocket(9708);
+                try (Socket clientSocket = serverSocket.accept()) {
+                    System.out.println("Client is connected!");
 
-            Socket soc = ss.accept();
-            System.out.println("Connection established");
+                    BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                    String receivedMessage = in.readLine();
+                    System.out.println("Received message from client: " + receivedMessage);
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
-            String str = in.readLine();
-            PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
-            out.println("Server echo says: " + str);
 
-            ss.close();
+                    PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+                    out.println("Server response: " + receivedMessage);
 
+                    if (receivedMessage.equalsIgnoreCase("exit")) {
+                        out.println("Exitting serve...");
+                        System.out.println("Received command for closing the server.");
+                        exit = true;
+                    } else {
+                        out.println("Received message from server is : " + receivedMessage);
+                    }
+
+                } catch (IOException e) {
+                    System.out.println("Error while prcessing client request: " + e.getMessage());
+                }
+            }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error while starting the server: " + e.getMessage());
         }
-
-
     }
 }
+
