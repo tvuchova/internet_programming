@@ -23,7 +23,7 @@ public class StudentClient {
                 System.out.println("1. Add student");
                 System.out.println("2. View all students");
                 System.out.println("3. Search student by name");
-                System.out.println("4. Avarage mark for all students");
+                System.out.println("4. Average mark for all students");
                 System.out.println("5. Exit");
                 System.out.print("Choose option (1-5): ");
 
@@ -52,7 +52,6 @@ public class StudentClient {
             } catch (IOException e) {
                 System.err.print(e.getMessage());
             }
-
         }
     }
 
@@ -71,6 +70,7 @@ public class StudentClient {
                 System.err.println("Invalid mark.Try again");
                 return;
             }
+
         }
     }
 

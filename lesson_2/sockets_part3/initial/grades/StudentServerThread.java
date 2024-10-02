@@ -28,7 +28,7 @@ public class StudentServerThread implements Runnable {
                         String name = messageParts[1].trim();
                         double grade = Double.parseDouble(messageParts[2].trim());
                         StudentProcessor.addStudent(name, grade);
-                        out.println("Студентът е добавен успешно.");
+                        out.println("Student is added successfully.");
                     }
                     case "view" -> out.println(StudentProcessor.readStudents());
                     case "search" -> {
@@ -41,17 +41,17 @@ public class StudentServerThread implements Runnable {
                         System.out.println("Closing connection with client...");
                         return;
                     }
-                    default -> out.println("Невалидна команда! Опитайте отново.");
+                    default -> out.println("Invalid command!Try again.");
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.print("Error :" + e.getMessage());
         }
         finally{
             try {
                 clientSocket.close();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.err.print("Error closing clientSocket: " + e.getMessage());
             }
         }
     }

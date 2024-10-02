@@ -15,9 +15,9 @@ public class StudentProcessor {
             writer.write(name + "," + grade);
             writer.newLine();
 
-            System.out.println("Успешно добавихте студента: " + name + " с оценка: " + grade);
+            System.out.println("Student is successfully added: " + name + " with mark: " + grade);
         } catch (IOException e) {
-            System.out.println("Грешка при записване на данните: " + e.getMessage());
+            System.out.println("Error while writing the data: " + e.getMessage());
         }
     }
 
