@@ -1,62 +1,94 @@
 package lesson_2.sockets_part3.initial.grades;
 
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.util.Scanner;
 
 public class StudentClient {
-    public static void main(String[] args) {
-        try (Scanner scanner = new Scanner(System.in)) {
+    private static Socket socket;
+    private static PrintWriter out;
+    private static BufferedReader in;
+
+    public static void main(String[] args) throws IOException {
+
+        try {
+            // Open socket connection once
+
+            Scanner scanner = new Scanner(System.in);
+
             while (true) {
-                System.out.println("\n--- Меню ---");
-                System.out.println("1. Добавяне на студент");
-                System.out.println("2. Преглед на всички студенти");
-                System.out.println("3. Търсене на студент по име");
-                System.out.println("4. Средна оценка на всички студенти");
-                System.out.println("5. Изход");
-                System.out.print("Изберете опция (1-5): ");
+                System.out.println("1. Add student");
+                System.out.println("2. View all students");
+                System.out.println("3. Search student by name");
+                System.out.println("4. Avarage mark for all students");
+                System.out.println("5. Exit");
+                System.out.print("Choose option (1-5): ");
 
                 String choice = scanner.nextLine();
 
                 switch (choice) {
-                    case "1":
-                        addStudent(scanner);
-                        break;
-                    case "2":
-                        viewAllStudents();
-                        break;
-                    case "3":
-                        searchStudent(scanner);
-                        break;
-                    case "4":
-                        viewAverageGrade();
-                        break;
-                    case "5":
-                        System.out.println("Изход от програмата...");
+                    case "1" -> addStudent(scanner);
+                    case "2" -> viewAllStudents();
+                    case "3" -> searchStudent(scanner);
+                    case "4" -> viewAverageGrade();
+                    case "5" -> {
+                        out.println("EXIT"); // Send exit command to the server
+                        System.out.println("Exit...");
                         return;
-                    default:
-                        System.out.println("Невалиден избор! Опитайте отново.");
+                    }
+                    default -> System.out.println("Invalid choice.Try again");
                 }
+            }
+        } catch (IOException e) {
+            System.err.print(e.getMessage());
+        } finally {
+            try {
+                if (in != null) in.close();
+                if (out != null) out.close();
+                if (socket != null) socket.close();
+            } catch (IOException e) {
+                System.err.print(e.getMessage());
+            }
+
+        }
+    }
+
+    private static void addStudent(Scanner scanner) throws IOException {
+        while (true) {
+            System.out.print("Add name of student: ");
+            String name = scanner.nextLine();
+            if ("quit".equalsIgnoreCase(name.toLowerCase().trim())) {
+                return;
+            }
+            System.out.print("Enter mark of student: ");
+            double grade;
+            try {
+                grade = Double.parseDouble(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.err.println("Invalid mark.Try again");
+                return;
             }
         }
     }
 
-    private static void sendMessage(String message) {
+    private static void viewAllStudents() throws IOException {
+
 
     }
 
-    private static void addStudent(Scanner scanner) {
-
-        //sendMessage("ADD," );
-    }
-
-    private static void viewAllStudents() {
+    private static void searchStudent(Scanner scanner) throws IOException {
 
     }
 
-    private static void searchStudent(Scanner scanner) {
+    private static void viewAverageGrade() throws IOException {
 
     }
 
-    private static void viewAverageGrade() {
+    private static void readServerResponse() {
 
     }
 }
+
