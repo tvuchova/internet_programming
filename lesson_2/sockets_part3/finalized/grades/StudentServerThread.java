@@ -1,4 +1,4 @@
-package lesson_2.sockets_part3.initial.grades;
+package lesson_2.sockets_part3.finalized.grades;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,14 +8,15 @@ import java.net.Socket;
 
 public class StudentServerThread implements Runnable {
     private final Socket clientSocket;
+
     public StudentServerThread(Socket socket) {
         this.clientSocket = socket;
     }
 
     @Override
     public void run() {
-        try(BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)){
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
             String message;
             while ((message = in.readLine()) != null) {
                 System.out.println("Message received from client: " + message);
@@ -28,7 +29,7 @@ public class StudentServerThread implements Runnable {
                         String name = messageParts[1].trim();
                         double grade = Double.parseDouble(messageParts[2].trim());
                         StudentProcessor.addStudent(name, grade);
-                        out.println("Student is added successfully.");
+                        out.println("Student is added");
                     }
                     case "view" -> out.println(StudentProcessor.readStudents());
                     case "search" -> {
@@ -41,17 +42,16 @@ public class StudentServerThread implements Runnable {
                         System.out.println("Closing connection with client...");
                         return;
                     }
-                    default -> out.println("Invalid command!Try again.");
+                    default -> out.println("Invalid command.Try again");
                 }
             }
         } catch (IOException e) {
-            System.err.print("Error :" + e.getMessage());
-        }
-        finally{
+            throw new RuntimeException(e);
+        } finally {
             try {
                 clientSocket.close();
             } catch (IOException e) {
-                System.err.print("Error closing clientSocket: " + e.getMessage());
+                System.err.print("Error " + e.getMessage());
             }
         }
     }

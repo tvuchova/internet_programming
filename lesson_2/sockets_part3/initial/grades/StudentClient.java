@@ -57,19 +57,6 @@ public class StudentClient {
 
     private static void addStudent(Scanner scanner) throws IOException {
         while (true) {
-            System.out.print("Add name of student: ");
-            String name = scanner.nextLine();
-            if ("quit".equalsIgnoreCase(name.toLowerCase().trim())) {
-                return;
-            }
-            System.out.print("Enter mark of student: ");
-            double grade;
-            try {
-                grade = Double.parseDouble(scanner.nextLine());
-            } catch (NumberFormatException e) {
-                System.err.println("Invalid mark.Try again");
-                return;
-            }
 
         }
     }
