@@ -6,7 +6,7 @@ import java.util.List;
 
 public class StudentProcessor {
 
-    private static final String FILE_NAME = "students.txt";
+    private static final String FILE_NAME = "./internet_programming/lesson_2/sockets_part3/initial/grades/files/students.txt";
 
     public static void addStudent(String name, double grade) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
