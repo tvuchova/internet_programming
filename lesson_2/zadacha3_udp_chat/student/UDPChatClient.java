@@ -9,10 +9,9 @@ public class UDPChatClient {
         BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
         byte[] sendData;
         byte[] receiveData = new byte[1024];
-
+        //Enter message to send to server
         // Send message to server
-
-        // Receive confirmation
+        // Receive confirmation and print it
 
     }
 }
