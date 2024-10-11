@@ -3,6 +3,8 @@ package lesson_2.zadacha3_udp_chat.student;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 
 public class UDPChatClient {
     public static void main(String[] args) throws Exception {
@@ -12,6 +14,8 @@ public class UDPChatClient {
         // Enter message to send to server
         // Send message to server
         // Receive confirmation and print it
+
+
 
 
     }

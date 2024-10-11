@@ -1,6 +1,8 @@
 package lesson_2.zadacha3_udp_chat.student;
 
 
+import java.net.DatagramSocket;
+
 public class UDPChatServer {
 
     private static final int SERVER_PORT = 9876;
