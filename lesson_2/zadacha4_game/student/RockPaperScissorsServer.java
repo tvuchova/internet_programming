@@ -1,11 +1,33 @@
 package lesson_2.zadacha4_game.student;
 
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+
 public class RockPaperScissorsServer {
     public static void main(String[] args) {
+        try{
+            DatagramSocket serverSocket = new DatagramSocket(12345);
+            byte[] receivedData = new byte[1024];
+            System.out.println("Server is running...");
+            while (true) {
+                DatagramPacket receivedSocket = new DatagramPacket(receivedData, receivedData.length);
+                serverSocket.receive(receivedSocket);
 
-        //1. Create DatagramSocket
-        //2. received data packet from client
-        //3. prepare and send response to client
+                String clientChoice = new String(receivedSocket.getData(), 0, receivedSocket.getLength());
+                InetAddress clientAddress = receivedSocket.getAddress();
+                int clientPort = receivedSocket.getPort();
+
+                System.out.println("Client choice is: " + clientChoice);
+                String result = getResult(clientChoice);
+
+                byte[] sendData = result.getBytes();
+                DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, clientAddress, clientPort);
+                serverSocket.send(sendPacket);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
 
     }
