@@ -1,5 +1,6 @@
 package lesson_2.sockets_part3.finalized.grades;
 
+import lesson_2.sockets_part3.initial.grades.StudentProcessor;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -25,7 +26,6 @@ public class StudentServerThread implements Runnable {
 
                 switch (command) {
                     case "add" -> {
-                        //validate input
                         String name = messageParts[1].trim();
                         double grade = Double.parseDouble(messageParts[2].trim());
                         StudentProcessor.addStudent(name, grade);
@@ -37,7 +37,7 @@ public class StudentServerThread implements Runnable {
                         out.println(StudentProcessor.searchStudent(studentName));
                     }
                     case "average" ->
-                            out.println(StudentProcessor.calculateAverageGrade(StudentProcessor.readStudents()));
+                            out.println(lesson_2.sockets_part3.initial.grades.StudentProcessor.calculateAverageGrade(StudentProcessor.readStudents()));
                     case "exit" -> {
                         System.out.println("Closing connection with client...");
                         return;
