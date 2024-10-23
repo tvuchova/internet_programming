@@ -41,41 +41,34 @@ public class AsyncServer {
     }
 
     private static void handleClient(AsynchronousSocketChannel clientChannel) {
-        // Use try-with-resources to ensure the client channel is properly closed
-        try (AsynchronousSocketChannel autoCloseableClientChannel = clientChannel) {
-            ByteBuffer buffer = ByteBuffer.allocate(1024);
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
 
-            // Start reading data from the client
-            clientChannel.read(buffer, buffer, new CompletionHandler<>() {
-                @Override
-                public void completed(Integer bytesRead, ByteBuffer buffer) {
-                    if (bytesRead == -1) {
-                        // Client has disconnected
-                        closeClientChannel(clientChannel);
-                        return;
-                    }
-
-                    // Process the message from the client
-                    buffer.flip();
-                    String message = new String(buffer.array(), 0, buffer.limit());
-                    System.out.println("Received message from client: " + message);
-                    buffer.clear();
-
-                    // Echo the message back to the client
-                    ByteBuffer responseBuffer = ByteBuffer.wrap(("Server received: " + message).getBytes());
-                    sendResponse(clientChannel, responseBuffer);
-                }
-
-                @Override
-                public void failed(Throwable exc, ByteBuffer buffer) {
-                    System.err.println("Failed to read from client: " + exc.getMessage());
+        clientChannel.read(buffer, buffer, new CompletionHandler<>() {
+            @Override
+            public void completed(Integer bytesRead, ByteBuffer buffer) {
+                if (bytesRead == -1) {
+                    // Client has disconnected
                     closeClientChannel(clientChannel);
+                    return;
                 }
-            });
 
-        } catch (IOException e) {
-            System.err.println("Error handling client: " + e.getMessage());
-        }
+                // Process the message from the client
+                buffer.flip();
+                String message = new String(buffer.array(), 0, buffer.limit());
+                System.out.println("Received message from client: " + message);
+                buffer.clear();
+
+                // Echo the message back to the client
+                ByteBuffer responseBuffer = ByteBuffer.wrap(("Server received: " + message).getBytes());
+                sendResponse(clientChannel, responseBuffer);
+            }
+
+            @Override
+            public void failed(Throwable exc, ByteBuffer buffer) {
+                System.err.println("Failed to read from client: " + exc.getMessage());
+                closeClientChannel(clientChannel);
+            }
+        });
     }
 
     private static void sendResponse(AsynchronousSocketChannel clientChannel, ByteBuffer responseBuffer) {

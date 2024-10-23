@@ -7,10 +7,8 @@ import java.nio.channels.CompletionHandler;
 
 public class AsyncClient {
     public static void main(String[] args) throws Exception {
-        // Open the client socket channel
         try (AsynchronousSocketChannel socketChannel = AsynchronousSocketChannel.open()) {
-            InetSocketAddress hostAddress = new InetSocketAddress("localhost", 8090);
-
+            InetSocketAddress hostAddress = new InetSocketAddress("127.0.0.1", 8090);
             // Connect to the server
             socketChannel.connect(hostAddress, null, new CompletionHandler<Void, Object>() {
                 @Override
@@ -40,7 +38,11 @@ public class AsyncClient {
 
                                 @Override
                                 public void failed(Throwable exc, ByteBuffer attachment) {
-                                    System.err.println("Failed to read response from server: " + exc.getMessage());
+                                    if (exc instanceof java.nio.channels.AsynchronousCloseException) {
+                                        System.err.println("Connection closed unexpectedly while reading: " + exc.getMessage());
+                                    } else {
+                                        System.err.println("Failed to read response from server: " + exc.getMessage());
+                                    }
                                 }
                             });
                         }
@@ -57,11 +59,11 @@ public class AsyncClient {
                     System.err.println("Failed to connect to server: " + exc.getMessage());
                 }
             });
+
+            // Prevent client from exiting prematurely
+            Thread.sleep(5000);
         } catch (Exception e) {
             System.err.println("Failed to open client socket channel: " + e.getMessage());
         }
-
-        // Prevent client from exiting
-        Thread.sleep(5000);
     }
 }
