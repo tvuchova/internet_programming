@@ -1,0 +1,5 @@
+student/.idea
+.idea
+*.xml
+*.iml
+out
