@@ -1,0 +1,17 @@
+GET https://www.wikipedia.org/
+
+###
+
+GET https://reqres.in/api/users/2 HTTP/1.1
+Host: reqres.in
+
+
+###
+POST https://reqres.in/api/users HTTP/1.1
+Host: reqres.in
+Content-Type: application/json
+
+{
+  "name": "morpheus",
+  "job": "leader"
+}
