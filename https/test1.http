@@ -15,3 +15,25 @@ Content-Type: application/json
   "name": "morpheus",
   "job": "leader"
 }
+
+###
+GET localhost:8000/hello
+Content-Type: application/json
+
+###
+POST localhost:8000/data
+Content-Type: application/json
+
+{
+  "name": "morpheus",
+  "job": "leader"
+}
+
+###
+PUT localhost:8000/update
+Content-Type: application/json
+
+{
+  "name": "morpheus",
+  "job": "tester"
+}
