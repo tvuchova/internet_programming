@@ -3,6 +3,7 @@ package org.lection.http;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -30,17 +31,25 @@ public class SimplePostRequest {
                     .POST(HttpRequest.BodyPublishers.ofString(jsonPayload))
                     .build();
 
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<Post> response = client.send(request, jsonBodyHandler(Post.class));
             log.info("Response status code: " + response.statusCode());
             log.info("Response body: " + response.body());
 
-            // Convert JSON response body back into a Post object
-            Post responsePost = objectMapper.readValue(response.body(), Post.class);
-
-            // Log the converted Post object
-            log.info("Response Post object: " + responsePost);
         } catch (Exception e) {
             log.error("Error creating or sending POST request", e);
         }
+    }
+
+    private static <T> HttpResponse.BodyHandler<T> jsonBodyHandler(Class<T> clazz) {
+        return responseInfo -> HttpResponse.BodySubscribers.mapping(
+                HttpResponse.BodyHandlers.ofInputStream().apply(responseInfo),
+                inputStream -> {
+                    try (InputStream is = inputStream) {
+                        return objectMapper.readValue(is, clazz);
+                    } catch (Exception e) {
+                        throw new RuntimeException("Failed to parse JSON response", e);
+                    }
+                }
+        );
     }
 }
