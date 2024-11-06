@@ -32,6 +32,7 @@ public class AsyncFileClient {
             @Override
             public void failed(Throwable exc, Void attachment) {
                 System.err.println("Failed to connect to server: " + exc.getMessage());
+                closeChannel(socketChannel);
             }
         });
 
@@ -70,6 +71,7 @@ public class AsyncFileClient {
             @Override
             public void failed(Throwable exc, ByteBuffer attachment) {
                 System.err.println("Failed to send file name: " + exc.getMessage());
+                closeChannel(socketChannel);
             }
         });
     }
@@ -95,6 +97,19 @@ public class AsyncFileClient {
             }
         } catch (IOException | InterruptedException | ExecutionException e) {
             System.err.println("Error sending file content: " + e.getMessage());
+        }
+
+
+    }
+
+    private static void closeChannel(AsynchronousSocketChannel socketChannel) {
+        try {
+            if (socketChannel != null && socketChannel.isOpen()) {
+                socketChannel.close();
+                System.out.println("Socket channel closed.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error closing socket channel: " + e.getMessage());
         }
     }
 }
