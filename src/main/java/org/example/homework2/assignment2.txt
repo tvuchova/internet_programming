@@ -1,0 +1,15 @@
+Task:
+Create an asynchronous file transfer application where:
+Server: Accepts connections from multiple clients and saves the files sent by the clients.
+Client: Connects to the server asynchronously and sends files.
+Requirements
+1.   Server Functionality:
+       Start an asynchronous server socket channel that listens for incoming client connections.
+       Upon accepting a client connection, read the incoming file data and save it to the local file
+system.
+
+2.   Client Functionality:
+       Connect to the server asynchronously.
+       Read a file from the local file system and send it to the server.
+
+        Limit the number of file uploads with fixed thread pool or AsynchronousChannelGroup to prevent overloading of server..
