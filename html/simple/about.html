@@ -22,10 +22,46 @@
     <h2>About Page</h2>
     <p>This page is designed to provide information about the website.</p>
     <p>We aim to help students learn web development with simple projects.</p>
+
+    <!-- Canvas element -->
+    <h3>Our Creative Canvas</h3>
+    <canvas id="myCanvas" width="400" height="200" style="border:1px solid #000;"></canvas>
 </main>
 
 <footer>
     <p>&copy; 2024 My Multi-Page Website</p>
 </footer>
+
+<script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+
+    ctx.strokeStyle = '#4caaaf';
+    ctx.lineWidth = 3;
+
+    function startDrawing(event) {
+        drawing = true;
+        ctx.beginPath();
+        ctx.moveTo(event.offsetX, event.offsetY);
+    }
+
+    function draw(event) {
+        if (!drawing) return;
+        ctx.lineTo(event.offsetX, event.offsetY);
+        ctx.stroke();
+    }
+
+    function stopDrawing() {
+        drawing = false;
+        ctx.closePath();
+    }
+    
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('mouseleave', stopDrawing);
+</script>
+
 </body>
 </html>

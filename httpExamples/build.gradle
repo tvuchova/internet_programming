@@ -37,6 +37,8 @@ dependencies {
     //Embedded Tomcat
     implementation 'org.apache.tomcat.embed:tomcat-embed-core:10.0.20'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:10.0.20'
+    implementation 'org.apache.logging.log4j:log4j-appserver:2.24.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.24.1'
 
 
 }

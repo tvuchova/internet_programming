@@ -74,3 +74,40 @@ input {
     flex: 1; /* Allow input to take remaining space */
     padding: 8px; /* Padding inside the input */
 }
+
+/* Reset some default styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic styling for layout */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Container for main content and aside */
+main section {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Styling for main content */
+main section article {
+    flex: 2;
+}
+
+/* Styling for aside */
+main section aside {
+    flex: 1;
+    background-color: #f4f4f4;
+    padding: 15px;
+    border: 1px solid #ddd;
+}
+
