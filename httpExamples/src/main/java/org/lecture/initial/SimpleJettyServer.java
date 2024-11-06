@@ -1,4 +1,4 @@
-package org.lection.initial;
+package org.lecture.initial;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

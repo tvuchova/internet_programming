@@ -1,4 +1,4 @@
-package org.lection.initial;
+package org.lecture.initial;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,7 +13,7 @@ public class AsyncPostExample {
         // Define the target URI and create a new Post object
         try {
             URI uri = URI.create("https://jsonplaceholder.typicode.com/posts");
-            
+
 
         } catch (Exception e) {
             log.error("Error creating or sending POST request", e);

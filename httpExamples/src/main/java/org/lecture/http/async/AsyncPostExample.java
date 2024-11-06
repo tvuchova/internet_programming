@@ -1,8 +1,8 @@
-package org.lection.http.async;
+package org.lecture.http.async;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.lection.http.Post;
+import org.lecture.http.Post;
 
 import java.net.URI;
 import java.net.http.HttpClient;

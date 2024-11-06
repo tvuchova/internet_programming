@@ -1,4 +1,4 @@
-package org.lection.initial;
+package org.lecture.initial;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;

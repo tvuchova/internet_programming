@@ -1,4 +1,4 @@
-package org.lection.http;
+package org.lecture.http;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
