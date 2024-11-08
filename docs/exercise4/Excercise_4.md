@@ -1,58 +1,58 @@
-__Упражнение 4: HTTP Clients__
+# Упражнение 4: HTTP Clients
 
-__Task 1 – \(Crud Users\)__
+## Task 1 – \(Crud Users\)
 
 [__https://reqres\.in/__](https://reqres.in/)
 
-Using an HTTP client \(e\.g\., HttpClient in Java\), create a class that interacts with the ReqRes API\. Implement the following tasks using appropriate HTTP methods \(GET, POST, PUT, and DELETE\):
+Using an HTTP client (e.g., HttpClient in Java), create a class that interacts with the ReqRes API. Implement the following tasks using appropriate HTTP methods (GET, POST, PUT, and DELETE):
 
-1\. __List Users __
+##  1.List Users
 
-Endpoint:  https://reqres\.in/api/users?page=2
+Endpoint:  https://reqres.in/api/users?page=2
 
-Objective: Retrieve a list of users from the second page\.
+Objective: Retrieve a list of users from the second page.
 
-Task: Use the HTTP client to make a request to fetch users and print the response in a formatted way \(using POJO object\)\.
+Task: Use the HTTP client to make a request to fetch users and print the response in a formatted way (using POJO object).
 
-2\.__ Get Single User __
+## 2.Get Single User 
 
-- Endpoint: https://reqres\.in/api/users/2
-- Objective: Retrieve a specific user by their ID\.
-- Task: Create a method that accepts a user ID as a parameter and retrieves the user’s details\. Print the response to the console\.
+- Endpoint: https://reqres.in/api/users/2
+- Objective: Retrieve a specific user by their ID.
+- Task: Create a method that accepts a user ID as a parameter and retrieves the user’s details\. Print the response to the console.
 
-__3\. Handle "User Not Found" __
+## 3. Handle "User Not Found" 
 
-- Endpoint:  https://reqres\.in/api/users/23
-- Objective: Handle scenarios where the requested user is not found\.
-- Task: Create a method that tries to retrieve a user by a non\-existent ID \(like 23\) and handles the error gracefully by printing an appropriate message when the user is not found\.
+- Endpoint:  https://reqres.in/api/users/23
+- Objective: Handle scenarios where the requested user is not found.
+- Task: Create a method that tries to retrieve a user by a non-existent ID (like 23) and handles the error gracefully by printing an appropriate message when the user is not found.
 
-__4\. Create a New User __
+## 4. Create a New User
 
-- Endpoint: https://reqres\.in/api/users
-- Objective: Send a request to create a new user with a name and a job\.
-- Task: Write a method that accepts two parameters: name and job, and creates a new user by sending a POST request\. Print the newly created user’s details from the response\.
+- Endpoint: https://reqres.in/api/users
+- Objective: Send a request to create a new user with a name and a job.
+- Task: Write a method that accepts two parameters: name and job, and creates a new user by sending a POST request. Print the newly created user’s details from the response.
 
-__5\. Update User __
+## 5. Update User
 
 - Endpoint:
-	-  https://reqres\.in/api/users/2
+	-  https://reqres.in/api/users/2
 - Objective: Update the details of an existing user using 
-- Task 1: Write a method that accepts a user ID, name, and job, and updates the user’s\. Print the updated details from the response\.
+- Task 1: Write a method that accepts a user ID, name, and job, and updates the user’s. Print the updated details from the response\.
 - Task 2:Write a method that updates the job of user\.Print the result of updated object
 
-__6\. Delete User __
+## 6. Delete User
 
-__      __Endpoint: https://reqres\.in/api/users/2
+- Endpoint: https://reqres.in/api/users/2
 
 - Objective: Send a request to remove a user by their ID\.
 - Task: Write a method that accepts a user ID and deletes the user\. Print a success message once the user is deleted or if the user does not exist\.
 
   
-Others tesing api’s\(which we used in the lection\):
+Others tesing api’s(which we used in the lection):
 
-https://jsonplaceholder\.typicode\.com/
+https://jsonplaceholder.typicode.com/
 
-Task 2: __URL Validation and Encoding__ 
+## Task 2: URL Validation and Encoding
 
 In this task, you will create a Java program that:
 
@@ -84,15 +84,15 @@ Examples :
 
 Encode:
 
-String baseUrl = "https://www\.example\.com/search"; 
+String baseUrl = "https://www.example.com/search"; 
 
 String query = "hello world & java encoding";
 
-Encoded URL: https://www\.example\.com/search?query=hello\+world\+%26\+java\+encoding
+Encoded URL: https://www.example.com/search?query=hello\+world\+%26\+java\+encoding
 
-String invalidUrl = "https://example\.com/search?query=dog&cat";
+String invalidUrl = "https://example.com/search?query=dog&cat";
 
-\(Special Characters like &, ?, =, \#\)
+(Special Characters like &, ?, =, \#\)
 
-https://example\.com/search?query=бира
+https://example.com/search?query=бира
 
