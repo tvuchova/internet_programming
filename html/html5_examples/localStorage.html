@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Welcome to My Website</h1>
+    <p id="welcomeMessage">Enter your name to personalize your experience.</p>
+
+    <form id="nameForm">
+        <input type="text" id="nameInput" placeholder="Enter your name" required>
+        <button type="submit">Save Name</button>
+    </form>
+
+    <button id="clearName">Clear Name</button>
+</div>
+
+<script>
+    // Get HTML elements
+    const nameForm = document.getElementById('nameForm');
+    const nameInput = document.getElementById('nameInput');
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    const clearNameButton = document.getElementById('clearName');
+
+    // Load the saved name from localStorage when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedName = localStorage.getItem('userName');
+        if (savedName) {
+            welcomeMessage.textContent = `Welcome back, ${savedName}!`;
+            nameInput.value = savedName;
+        }
+    });
+
+    // Save the name to localStorage when the form is submitted
+    nameForm.addEventListener('submit', (e) => {
+        e.preventDefault();  // Prevent form from refreshing the page
+        const userName = nameInput.value;
+        localStorage.setItem('userName', userName);
+        welcomeMessage.textContent = `Welcome, ${userName}!`;
+        nameInput.value = '';  // Clear the input field after saving
+    });
+
+    // Clear the name from localStorage and reset the message
+    clearNameButton.addEventListener('click', () => {
+        localStorage.removeItem('userName');
+        welcomeMessage.textContent = 'Enter your name to personalize your experience.';
+    });
+</script>
+</body>
+</html>

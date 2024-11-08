@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Test CSS Counter Property</title>
+    <style>
+        body {
+            counter-reset: h1-counter;
+        }
+
+        h1 {
+            counter-increment: h1-counter;
+            counter-reset: h2-counter;
+        }
+
+        h2 {
+            counter-increment: h2-counter;
+        }
+
+        h1::before {
+            content: "Section " counter(h1-counter) ". ";
+        }
+
+        h2::before {
+            content: counter(h1-counter) "." counter(h2-counter) " ";
+        }
+    </style>
+</head>
+<body>
+<h1>Aaaa</h1>
+<h2>Xxxx</h2>
+<h2>Yyyy</h2>
+<h1>Bbbb</h1>
+<h2>Xxxx</h2>
+<h1>Cccc</h1>
+</body>
+</html>
