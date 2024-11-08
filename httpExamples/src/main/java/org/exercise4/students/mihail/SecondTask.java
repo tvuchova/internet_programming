@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class SecondTask {
 
+
     public static boolean isValidURL(String urlString) {
         try {
             new URL(urlString).toURI();
