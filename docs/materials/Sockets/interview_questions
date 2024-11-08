@@ -1,0 +1,31 @@
+1)What is OSI model?
+2)What is TCP/IP model?
+3)Difference between TCP and UDP?
+4)What is the purpose of Transport layer?
+5)What are protocols of Transport layer?
+6)What is the purpose of Network layer?
+7)IPv4 and IPv6 what are the differences?
+8)What is the protocol of Data link layer?
+9)What is the purpose of Presentation layer?
+10)What is DNS and how it works?
+
+
+========Sockets=================
+1)What is a socket and on which layer it works?
+2)What is the difference between TCP and UDP sockets?
+3)What is the difference between blocking and non-blocking sockets?
+4)What is the difference between synchronous and asynchronous sockets?
+
+
+=================Java questions=================
+
+4)What is immutable object?
+
+ 1)final to the class
+ 2)final to the variables
+ 3)only get methods
+ 4)no setters
+ 5)deep copy of the object ot getters and constructor
+
+
+ 5)volitile keyword?

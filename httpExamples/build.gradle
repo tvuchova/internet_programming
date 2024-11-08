@@ -1,0 +1,58 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.0'
+
+    //lombok
+    implementation 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    //Logger slf4j
+    //https://dev.to/ardc_overflow/a-brief-intro-to-slf4j-and-the-java-logging-hell-2gfj
+    //https://sematext.com/blog/slf4j-tutorial/
+    implementation('org.slf4j:slf4j-api:2.0.16')
+    implementation('org.slf4j:slf4j-log4j12:2.0.16')
+
+    //Jetty Server
+    implementation 'org.eclipse.jetty:jetty-server:11.0.15'
+    implementation 'org.eclipse.jetty:jetty-servlet:11.0.15'
+
+    //Servlet API
+    implementation 'jakarta.servlet:jakarta.servlet-api:6.1.0'
+    implementation 'jakarta.platform:jakarta.jakartaee-api:9.1.0'
+
+    //Embedded Tomcat
+    implementation 'org.apache.tomcat.embed:tomcat-embed-core:10.0.20'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:10.0.20'
+    implementation 'org.apache.logging.log4j:log4j-appserver:2.24.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.24.1'
+
+
+}
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+tasks.withType(JavaCompile) {
+    options.compilerArgs << "-Xlint:deprecation"
+}
+war {
+    archiveFileName = 'servlet-demo.war'
+}
+test {
+    useJUnitPlatform()
+}

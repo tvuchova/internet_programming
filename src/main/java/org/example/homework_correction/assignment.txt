@@ -1,0 +1,10 @@
+Task Description:
+We are building a multi-client chat server where multiple clients can connect to a server and send messages to each other. The server should broadcast any message received from one client to all other connected clients.Each client must first register with a unique username before they can join the chat. Once registered, they can send and receive messages.
+
+Requirements:
+Server: The server should be able to handle multiple clients concurrently (multi-threaded) and broadcast any message received from one client to all the other clients.
+Server: It will maintain a list of registered users. Each client must first register with a unique username before sending or receiving messages.
+Client: Each client can send messages to the server, and they should receive messages from other connected clients in real-time.
+Client: Each client must first register by providing a username. After that, they can start chatting.
+Username Validation: The server will ensure that no two clients have the same username.(users can be stored in memory)
+Exit Mechanism: Clients can type "exit" to disconnect from the server.
