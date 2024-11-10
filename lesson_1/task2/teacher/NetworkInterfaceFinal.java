@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:lesson_1/zadacha2/teacher/NetworkInterfaceFinal.java
 package lesson_1.zadacha2.teacher;
-========
-package org.example.lesson_1.task2.teacher;
->>>>>>>> 6e14c024b6b7a0752ed2df88abcf05d4652214be:lesson_1/task2/teacher/NetworkInterfaceFinal.java
 
 
 import java.net.InetAddress;

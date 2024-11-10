@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:lesson_1/zadacha1/teacher/NSLookupFinal.java
 package lesson_1.zadacha1.teacher;
-========
-package org.example.lesson_1.task1.teacher;
->>>>>>>> 6e14c024b6b7a0752ed2df88abcf05d4652214be:lesson_1/task1/teacher/NSLookupFinal.java
 
 import java.io.IOException;
 import java.net.InetAddress;

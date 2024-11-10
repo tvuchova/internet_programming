@@ -1,4 +1,4 @@
-package main.java.org.exercise4.students.alexander;
+package org.exercise4.students.alexander;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;

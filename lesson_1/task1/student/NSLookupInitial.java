@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:lesson_1/zadacha1/student/NSLookupInitial.java
 package lesson_1.zadacha1.student;
-========
-package org.example.lesson_1.task1.student;
->>>>>>>> 6e14c024b6b7a0752ed2df88abcf05d4652214be:lesson_1/task1/student/NSLookupInitial.java
 
 
 public class NSLookupInitial {
