@@ -2,13 +2,31 @@
 
 ## Table of Contents
 
-- lesson_1: [Introduction to Internet Programming]
-- lesson_2: [Asynchronous Java Socket Programming]
-- homework_1: [Homework 1]
-- homework_2: [Homework 2]
-- httpExamples: [HTTP Protocol Examples]
-- materials: [Materials for the course]
-- html: [HTML5,CSS3 and JavaScript]
+### Root Project
 
-Convert a word document to markdown
-mammoth document.docx --output-format=markdown > README.md
+Path: `src/main/java/org/example`
+
+- [lesson_1: Introduction to Internet Programming](src/main/java/org/example/lesson_1)
+- [lesson_2: Asynchronous Java Socket Programming](src/main/java/org/example/lesson_2)
+- [homework_1: Homework 1](src/main/java/org/example/homework1)
+- [homework_2: Homework 2](src/main/java/org/example/homework2)
+- [homework_correction: Homework Correction](src/main/java/org/example/homework_correction)
+
+### Module: HTTP Examples
+
+- [exercise4: Example of HTTP Client CRUD and URL Validation](httpExamples/src/main/java/org/exercise4)
+- [lecture: HTTP Client, Server, Sockets](httpExamples/src/main/java/org/lecture)
+
+### Additional Resources
+
+- [materials:  Materials for the course](docs/materials)
+- [html: HTML5, CSS3, and JavaScript examples](html)
+-
+
+#### Convert a Word Document to Markdown
+
+You can use either **Pandoc** or **Mammoth** to convert a Word document (.docx) to Markdown:
+
+    pandoc input.docx -f docx -t markdown -s -o output.md
+    mammoth document.docx --output-format=markdown > README.md
+    
