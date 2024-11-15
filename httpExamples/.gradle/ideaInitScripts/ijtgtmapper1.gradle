@@ -1,0 +1,7 @@
+ext.pathMapper = [:]
+ext.pathMapper.put('C:/Users/Bogda/AppData/Local/Programs/IntelliJ IDEA Ultimate/plugins/gradle/lib/gradle-tooling-extension-impl.jar', '/mnt/c/Users/Bogda/AppData/Local/Programs/IntelliJ IDEA Ultimate/plugins/gradle/lib/gradle-tooling-extension-impl.jar')
+ext.pathMapper.put('C:/Users/Bogda/AppData/Local/Programs/IntelliJ IDEA Ultimate/plugins/gradle/lib/gradle-tooling-extension-api.jar', '/mnt/c/Users/Bogda/AppData/Local/Programs/IntelliJ IDEA Ultimate/plugins/gradle/lib/gradle-tooling-extension-api.jar')
+ext.pathMapper.put('//wsl.localhost/Ubuntu/home/bogi5/.jdks/corretto-21.0.5/bin/java', '/home/bogi5/.jdks/corretto-21.0.5/bin/java')
+ext.pathMapper.put('//wsl.localhost/Ubuntu/home/bogi5/projects/java/internet_programming', '/home/bogi5/projects/java/internet_programming')
+ext.pathMapper.put("<<target java executable path>>", '/home/bogi5/.jdks/corretto-21.0.5/bin/java')
+ext.mapPath = { path -> pathMapper.get(path) ?: path }
