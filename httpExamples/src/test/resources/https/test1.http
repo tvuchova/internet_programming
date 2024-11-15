@@ -37,3 +37,49 @@ Content-Type: application/json
   "name": "morpheus",
   "job": "tester"
 }
+
+###
+GET localhost:8080/home
+
+
+###
+POST localhost:8080
+Content-Type: application/json
+
+{
+  "name": "Alice"
+}
+
+
+###
+GET localhost:8000/hello
+
+###
+POST localhost:8000/user
+Content-Type: application/json
+
+
+{
+  "name": "John",
+  "age": 30,
+  "email": "john@example.com",
+  "status": "processing"
+}
+
+###
+PUT localhost:8000/user
+Content-Type: application/json
+
+{
+  "status": "ready"
+}
+
+###
+PATCH localhost:8000/user
+Content-Type: application/json
+
+{
+  "status": "active"
+}
+
+
