@@ -15,6 +15,7 @@ Path: `src/main/java/org/example`
 ### Module: HTTP Examples
 
 - [exercise4: Example of HTTP Client CRUD and URL Validation](httpExamples/src/main/java/org/exercise4)
+- [exercise5: Example of HTTP Jetty Server ](httpExamples/src/main/java/org/exercise5)
 - [lecture: HTTP Client, Server, Sockets](httpExamples/src/main/java/org/lecture)
 
 ### Additional Resources
