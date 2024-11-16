@@ -1,4 +1,4 @@
-package org.lecture.http;
+package org.lecture.http.clients;
 
 
 import lombok.extern.slf4j.Slf4j;
