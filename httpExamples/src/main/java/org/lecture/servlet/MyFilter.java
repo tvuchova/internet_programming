@@ -27,15 +27,11 @@ public class MyFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        // Log request URI
-       
-        // Add a custom header to response
+        log.info("Request received for URI:{} ", httpRequest.getRequestURI());
+        httpResponse.setHeader("X-My-Header", "MyFilter");
 
-        // Pass the request along the filter chain
         chain.doFilter(request, response);
 
-        // Adding a comment or additional logging after the chain.doFilter call
-        log.info("Response processed for URI: " + httpRequest.getRequestURI());
     }
 
     public void destroy() {
