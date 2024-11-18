@@ -20,7 +20,6 @@ public class SecondTask {
             return false;
         }
     }
-
     public static String encodeURL(String urlString) {
         try {
             URI uri = new URI(urlString);
@@ -32,11 +31,9 @@ public class SecondTask {
             return urlString;
         }
     }
-
     public static String decodeURL(String encodedUrl) {
         return URLDecoder.decode(encodedUrl, StandardCharsets.UTF_8);
     }
-
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
 

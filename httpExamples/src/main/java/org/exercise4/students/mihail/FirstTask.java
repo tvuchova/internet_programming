@@ -26,7 +26,6 @@ public class FirstTask {
         updateUserJob(2, "codbex Lead Engineer");
         deleteUser(2);
     }
-
     public static void listUsers() throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(USERS_URL + "?page=2"))
@@ -42,7 +41,6 @@ public class FirstTask {
             logger.error("Failed to retrieve user list.");
         }
     }
-
     public static void getUser(int userId) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(USERS_URL + "/" + userId))
@@ -58,7 +56,6 @@ public class FirstTask {
             logger.error("User with ID " + userId + " not found.");
         }
     }
-
     public static void createUser(String name, String job) throws IOException, InterruptedException {
         UserUpdateAndCreateRequest userUpdateRequest = new UserUpdateAndCreateRequest(name, job);
         String json = objectMapper.writeValueAsString(userUpdateRequest);
@@ -78,7 +75,6 @@ public class FirstTask {
             logger.error("Failed to create user.");
         }
     }
-
     public static void updateUser(int userId, String name, String job) throws IOException, InterruptedException {
         UserUpdateAndCreateRequest userUpdateRequest = new UserUpdateAndCreateRequest(name, job);
         String json = objectMapper.writeValueAsString(userUpdateRequest);
@@ -98,7 +94,6 @@ public class FirstTask {
             logger.error("Failed to update user with ID " + userId);
         }
     }
-
     public static void updateUserJob(int userId, String job) throws IOException, InterruptedException {
         UpdateJobRequest jobUpdateRequest = new UpdateJobRequest(job);
         String json = objectMapper.writeValueAsString(jobUpdateRequest);
@@ -118,7 +113,6 @@ public class FirstTask {
             logger.error("Failed to update job for user with ID " + userId);
         }
     }
-
     public static void deleteUser(int userId) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(USERS_URL + "/" + userId))
@@ -134,7 +128,6 @@ public class FirstTask {
             logger.error("Failed to delete user with ID " + userId);
         }
     }
-
     private static void prettyPrintJson(String json) throws IOException {
         JsonNode jsonNode = objectMapper.readTree(json);
         String prettyJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonNode);
