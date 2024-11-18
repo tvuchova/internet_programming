@@ -1,0 +1,11 @@
+/* Basic image styling */
+img {
+    width: 200px;
+    height: 150px;
+    transition: transform 0.3s ease-in-out;  /* Transition effect on transform */
+}
+
+/* Scale image on hover */
+img:hover {
+    transform: scale(1.2);  /* Scale the image by 1.2x */
+}

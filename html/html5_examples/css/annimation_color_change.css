@@ -1,0 +1,19 @@
+/* Keyframes for background color change */
+@keyframes colorChange {
+    0% {
+        background-color: blue; /* Start with blue */
+    }
+    50% {
+        background-color: green; /* Change to green at 50% */
+    }
+    100% {
+        background-color: red; /* Change to red at the end */
+    }
+}
+
+/* Apply the animation */
+div {
+    width: 300px;
+    height: 200px;
+    animation: colorChange 5s ease-in-out infinite; /* Color changes over 5 seconds */
+}
