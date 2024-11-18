@@ -1,5 +1,9 @@
 package org.exercise4.students.mihail;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.net.URLDecoder;
@@ -7,8 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class SecondTask {
-
-
+    private static final Logger logger = LoggerFactory.getLogger(FirstTask.class);
     public static boolean isValidURL(String urlString) {
         try {
             new URL(urlString).toURI();
@@ -19,7 +22,15 @@ public class SecondTask {
     }
 
     public static String encodeURL(String urlString) {
-        return URLEncoder.encode(urlString, StandardCharsets.UTF_8);
+        try {
+            URI uri = new URI(urlString);
+            String query = uri.getQuery();
+            String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8);
+            return uri.getScheme() + "://" + uri.getHost() + uri.getPath() + "?" + encodedQuery;
+        } catch (Exception e) {
+            logger.error("Error encoding query parameters", e);
+            return urlString;
+        }
     }
 
     public static String decodeURL(String encodedUrl) {
@@ -29,19 +40,19 @@ public class SecondTask {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter a URL: ");
+        logger.info("Enter a URL: ");
         String inputUrl = scanner.nextLine();
 
         if (isValidURL(inputUrl)) {
-            System.out.println("The URL is valid.");
+            logger.info("The URL is valid.");
 
             String encodedUrl = encodeURL(inputUrl);
-            System.out.println("Encoded URL: " + encodedUrl);
+            logger.info("Encoded URL: " + encodedUrl);
 
             String decodedUrl = decodeURL(encodedUrl);
-            System.out.println("Decoded URL: " + decodedUrl);
+            logger.info("Decoded URL: " + decodedUrl);
         } else {
-            System.out.println("Invalid URL format.");
+            logger.error("Invalid URL format.");
         }
 
         scanner.close();

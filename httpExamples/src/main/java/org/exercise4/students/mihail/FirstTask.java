@@ -2,6 +2,9 @@ package org.exercise4.students.mihail;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -9,6 +12,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class FirstTask {
+    private static final Logger logger = LoggerFactory.getLogger(FirstTask.class);
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final HttpClient client = HttpClient.newHttpClient();
     private static final String USERS_URL = "https://reqres.in/api/users";
@@ -32,10 +36,10 @@ public class FirstTask {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         if (response.statusCode() == 200) {
-            System.out.println("User list from page 2:");
+            logger.info("User list from page 2:");
             prettyPrintJson(response.body());
         } else {
-            System.out.println("Failed to retrieve user list.");
+            logger.error("Failed to retrieve user list.");
         }
     }
 
@@ -48,20 +52,16 @@ public class FirstTask {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         if (response.statusCode() == 200) {
-            System.out.println("User found:");
+            logger.info("User found:");
             prettyPrintJson(response.body());
         } else {
-            System.out.println("User with ID " + userId + " not found.");
+            logger.error("User with ID " + userId + " not found.");
         }
     }
 
     public static void createUser(String name, String job) throws IOException, InterruptedException {
-        String json = String.format("""
-                {
-                    "name": "%s",
-                    "job": "%s"
-                }
-                """, name, job);
+        UserUpdateAndCreateRequest userUpdateRequest = new UserUpdateAndCreateRequest(name, job);
+        String json = objectMapper.writeValueAsString(userUpdateRequest);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(USERS_URL))
@@ -72,20 +72,16 @@ public class FirstTask {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         if (response.statusCode() == 201) { // 201 Created
-            System.out.println("New user created:");
+            logger.info("New user created:");
             prettyPrintJson(response.body());
         } else {
-            System.out.println("Failed to create user.");
+            logger.error("Failed to create user.");
         }
     }
 
     public static void updateUser(int userId, String name, String job) throws IOException, InterruptedException {
-        String json = String.format("""
-                {
-                    "name": "%s",
-                    "job": "%s"
-                }
-                """, name, job);
+        UserUpdateAndCreateRequest userUpdateRequest = new UserUpdateAndCreateRequest(name, job);
+        String json = objectMapper.writeValueAsString(userUpdateRequest);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(USERS_URL + "/" + userId))
@@ -96,19 +92,16 @@ public class FirstTask {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         if (response.statusCode() == 200) {
-            System.out.println("User updated:");
+            logger.info("User updated:");
             prettyPrintJson(response.body());
         } else {
-            System.out.println("Failed to update user with ID " + userId);
+            logger.error("Failed to update user with ID " + userId);
         }
     }
 
     public static void updateUserJob(int userId, String job) throws IOException, InterruptedException {
-        String json = String.format("""
-                {
-                    "job": "%s"
-                }
-                """, job);
+        UpdateJobRequest jobUpdateRequest = new UpdateJobRequest(job);
+        String json = objectMapper.writeValueAsString(jobUpdateRequest);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(USERS_URL + "/" + userId))
@@ -119,10 +112,10 @@ public class FirstTask {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         if (response.statusCode() == 200) {
-            System.out.println("User job updated:");
+            logger.info("User job updated:");
             prettyPrintJson(response.body());
         } else {
-            System.out.println("Failed to update job for user with ID " + userId);
+            logger.error("Failed to update job for user with ID " + userId);
         }
     }
 
@@ -136,15 +129,15 @@ public class FirstTask {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         if (response.statusCode() == 204) {
-            System.out.println("User with ID " + userId + " deleted successfully.");
+            logger.info("User with ID " + userId + " deleted successfully.");
         } else {
-            System.out.println("Failed to delete user with ID " + userId);
+            logger.error("Failed to delete user with ID " + userId);
         }
     }
 
     private static void prettyPrintJson(String json) throws IOException {
         JsonNode jsonNode = objectMapper.readTree(json);
         String prettyJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonNode);
-        System.out.println(prettyJson);
+        logger.info(prettyJson);
     }
 }
