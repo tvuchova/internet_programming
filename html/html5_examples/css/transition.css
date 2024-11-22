@@ -1,0 +1,14 @@
+button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;  /* Transition effect on background-color */
+}
+
+/* Change background-color on hover */
+button:hover {
+    background-color: green;
+}
