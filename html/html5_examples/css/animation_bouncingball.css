@@ -1,0 +1,21 @@
+/* Keyframes for bouncing ball animation */
+@keyframes bounce {
+    0% {
+        transform: translateY(0); /* Start at the original position */
+    }
+    50% {
+        transform: translateY(-50px); /* Move up 50px at the middle of the animation */
+    }
+    100% {
+        transform: translateY(0); /* Return to the original position */
+    }
+}
+
+/* Styling for the ball */
+div {
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    border-radius: 50%;
+    animation: bounce 1s ease-in-out infinite; /* Apply the bounce animation */
+}

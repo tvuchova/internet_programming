@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Test "animation" Property</title>
+    <style>
+        @keyframes kf-rainbow-background {
+            0% {
+                background-color: red;
+            }
+            20% {
+                background-color: orange;
+            }
+            40% {
+                background-color: yellow;
+            }
+            60% {
+                background-color: green;
+            }
+            80% {
+                background-color: blue;
+            }
+            100% {
+                background-color: violet;
+            }
+        }
+
+        .rainbow-background {
+            animation: kf-rainbow-background 5s infinite; /* name duration iteration-count */
+        }
+
+        div {
+            width: 200px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="rainbow-background"></div>
+</body>
+</html>
