@@ -1,3 +1,6 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
+
 import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
@@ -5,10 +8,12 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 
+@Slf4j
 public class UserClient {
 
     private static final String BASE_URL = "https://reqres.in/api/users";
     private final HttpClient client = HttpClient.newHttpClient();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     // Method to List Users
     public void listUsers() {
@@ -20,11 +25,9 @@ public class UserClient {
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            // Print the raw JSON response directly
-            System.out.println("List of Users on Page 2:");
-            System.out.println(response.body());
+            log.info("List of Users on Page 2: {}", response.body());
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Error occurred while listing users: {}", e.getMessage(), e);
         }
     }
 
@@ -39,21 +42,19 @@ public class UserClient {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             if (response.statusCode() == 200) {
-                System.out.println("User found:");
-                System.out.println(response.body());
+                log.info("User found: {}", response.body());
             } else {
-                System.out.println("User not found with ID: " + userId);
+                log.warn("User not found with ID: {}", userId);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Error occurred while fetching user with ID {}: {}", userId, e.getMessage(), e);
         }
     }
 
     // Method to Create a New User
     public void createUser(String name, String job) {
         try {
-            // Creating the JSON string manually
-            String newUser = "{\"name\":\"" + name + "\",\"job\":\"" + job + "\"}";
+            String newUser = objectMapper.writeValueAsString(new UserRequest(name, job));
 
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(new URI(BASE_URL))
@@ -62,17 +63,16 @@ public class UserClient {
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println("New User Created:");
-            System.out.println(response.body());
+            log.info("New User Created: {}", response.body());
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Error occurred while creating a new user: {}", e.getMessage(), e);
         }
     }
 
     // Method to Update a User by ID
     public void updateUser(int userId, String name, String job) {
         try {
-            String updatedUser = "{\"name\":\"" + name + "\",\"job\":\"" + job + "\"}";
+            String updatedUser = objectMapper.writeValueAsString(new UserRequest(name, job));
 
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(new URI(BASE_URL + "/" + userId))
@@ -81,10 +81,9 @@ public class UserClient {
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println("User Updated:");
-            System.out.println(response.body());
+            log.info("User Updated: {}", response.body());
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Error occurred while updating user with ID {}: {}", userId, e.getMessage(), e);
         }
     }
 
@@ -98,12 +97,12 @@ public class UserClient {
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() == 204) {
-                System.out.println("User deleted successfully with ID: " + userId);
+                log.info("User deleted successfully with ID: {}", userId);
             } else {
-                System.out.println("Failed to delete user. User ID " + userId + " might not exist.");
+                log.warn("Failed to delete user. User ID {} might not exist.", userId);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Error occurred while deleting user with ID {}: {}", userId, e.getMessage(), e);
         }
     }
 
@@ -113,16 +112,24 @@ public class UserClient {
             URI uri = new URI(url);
             if (uri.isAbsolute() && (uri.getScheme().equals("http") || uri.getScheme().equals("https"))) {
                 String encodedUrl = URLEncoder.encode(url, StandardCharsets.UTF_8.toString());
-                System.out.println("Valid URL. Encoded URL: " + encodedUrl);
+                log.info("Valid URL. Encoded URL: {}", encodedUrl);
 
                 // Decode the encoded URL
                 String decodedUrl = java.net.URLDecoder.decode(encodedUrl, StandardCharsets.UTF_8.toString());
-                System.out.println("Decoded URL: " + decodedUrl);
+                log.info("Decoded URL: {}", decodedUrl);
             } else {
-                System.out.println("Invalid URL format.");
+                log.warn("Invalid URL format: {}", url);
             }
         } catch (Exception e) {
-            System.out.println("Error validating URL: " + e.getMessage());
+            log.error("Error validating URL: {}", e.getMessage(), e);
         }
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public class UserRequest {
+        private String name;
+        private String job;
     }
 }
